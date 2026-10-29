@@ -1,0 +1,15 @@
+city: lagos
+country: Nigeria
+iso3: NGA
+aoi: data/aoi/lagos/lagos_aoi.kml
+# Bounding box of the AOI (lon_min, lat_min, lon_max, lat_max), derived from lagos_aoi.kml
+bbox: [2.7022, 6.3708, 4.3508, 6.5464]
+crs_metric: "EPSG:32631"      # WGS 84 / UTM zone 31N
+tidal_regime: micro-tidal
+geology: low-lying deltaic / barrier-lagoon sediments
+critical_corridors:
+  - name: Lekki-Epe Expressway
+    osm_query: 'highway~"motorway|trunk|primary" and name~"Lekki|Epe"'
+biophysical_buffers: [mangroves, barrier_beach]
+tide_gauge: null              # TODO: nearest PSMSL / UHSLC gauge
+admin_unit_source: GRID3 Nigeria ward boundaries

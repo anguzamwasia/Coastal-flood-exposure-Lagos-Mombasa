@@ -1,0 +1,46 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.venv/
+.env
+
+# --- Large / generated geodata (keep folder structure via .gitkeep) ---
+data/raw/**
+!data/raw/**/
+data/interim/**
+!data/interim/**/
+data/processed/**
+!data/processed/**/
+data/external/**
+!data/external/**/
+models/lisflood_fp/**
+!models/lisflood_fp/**/
+models/hec_ras/**
+!models/hec_ras/**/
+outputs/maps/**
+!outputs/maps/**/
+!**/.gitkeep
+!data/**/README.md
+
+# Raster & heavy vector formats anywhere except the AOI folder
+*.tif
+*.tiff
+*.nc
+*.h5
+*.zarr/
+*.vrt
+*.pbf
+*.las
+*.laz
+!data/aoi/**
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

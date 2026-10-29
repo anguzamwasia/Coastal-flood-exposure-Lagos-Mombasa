@@ -1,0 +1,15 @@
+city: mombasa
+country: Kenya
+iso3: KEN
+# AOI not yet delivered - drop the boundary at this path (KML, GeoJSON or GPKG)
+aoi: data/aoi/mombasa/mombasa_aoi.kml
+bbox: null                    # filled in once the AOI is added
+crs_metric: "EPSG:32737"      # WGS 84 / UTM zone 37S
+tidal_regime: macro-tidal
+geology: coralline limestone island / estuarine creeks
+critical_corridors:
+  - name: Makupa Causeway
+    osm_query: 'name~"Makupa"'
+biophysical_buffers: [mangroves, coral_reefs]
+tide_gauge: Mombasa (UHSLC 151)
+admin_unit_source: Kenya IEBC ward boundaries

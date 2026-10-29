@@ -1,0 +1,108 @@
+# Catalogue of input datasets. `epochs` lists which baseline years each source can serve.
+# "static" = single time-slice used for all epochs.
+
+elevation:
+  fabdem:
+    description: Forest And Buildings removed Copernicus DEM (30 m, bare earth)
+    url: https://data.bris.ac.uk/data/dataset/s5hqmjcdj8yo2ibzi9b4ew3sn
+    epochs: static
+    raw_dir: dem
+  copernicus_dem:
+    description: Copernicus GLO-30 DSM (fallback / comparison)
+    gee_id: COPERNICUS/DEM/GLO30
+    epochs: static
+    raw_dir: dem
+
+optical:
+  landsat:
+    description: Landsat 5/7/8/9 Collection 2 Level-2 surface reflectance
+    gee_ids:
+      landsat5: LANDSAT/LT05/C02/T1_L2
+      landsat7: LANDSAT/LE07/C02/T1_L2
+      landsat8: LANDSAT/LC08/C02/T1_L2
+      landsat9: LANDSAT/LC09/C02/T1_L2
+    epochs: [2000, 2010, 2020, 2025]
+    raw_dir: optical/landsat
+  sentinel2:
+    description: Sentinel-2 L2A harmonized surface reflectance (10 m)
+    gee_id: COPERNICUS/S2_SR_HARMONIZED
+    epochs: [2020, 2025]
+    raw_dir: optical/sentinel2
+
+radar:
+  sentinel1_grd:
+    description: Sentinel-1 GRD (flood extent / water masks)
+    gee_id: COPERNICUS/S1_GRD
+    epochs: [2020, 2025]
+    raw_dir: sar/sentinel1
+  insar_velocity:
+    description: Sentinel-1 InSAR LOS/vertical velocity (e.g. EGMS-style, COMET LiCSBAS, or ASF HyP3 + MintPy)
+    period: [2015, 2025]
+    raw_dir: insar
+
+population:
+  worldpop:
+    description: WorldPop constrained / unconstrained 100 m population counts
+    url: https://hub.worldpop.org/
+    epochs: [2000, 2010, 2020, 2025]
+    raw_dir: population/worldpop
+  ghsl_pop:
+    description: GHS-POP R2023A (epochs 1975-2030, 5-yr step) 100 m
+    url: https://ghsl.jrc.ec.europa.eu/download.php?ds=pop
+    epochs: [2000, 2010, 2020, 2025]
+    raw_dir: population/ghsl
+
+buildings:
+  google_open_buildings:
+    description: Google Open Buildings v3 polygons
+    gee_id: GOOGLE/Research/open-buildings/v3/polygons
+    epochs: [2025]
+    raw_dir: buildings/google_open_buildings
+  google_open_buildings_temporal:
+    description: Open Buildings 2.5D Temporal (2016-2023 presence/height)
+    gee_id: GOOGLE/Research/open-buildings-temporal/v1
+    epochs: [2020]
+    raw_dir: buildings/google_open_buildings
+  ghsl_built:
+    description: GHS-BUILT-S R2023A built-up surface (supports 2000/2010 epochs)
+    epochs: [2000, 2010, 2020, 2025]
+    raw_dir: buildings/ghsl_built
+
+networks:
+  osm:
+    description: OpenStreetMap roads, rail, ports, civic facilities via OSMnx / Overpass
+    epochs: [2025]
+    raw_dir: osm
+
+landcover:
+  esa_worldcover:
+    gee_id: ESA/WorldCover/v200
+    epochs: [2020]
+    raw_dir: landcover
+  dynamic_world:
+    gee_id: GOOGLE/DYNAMICWORLD/V1
+    epochs: [2020, 2025]
+    raw_dir: landcover
+
+buffers:
+  global_mangrove_watch:
+    description: GMW v3 mangrove extent (1996-2020)
+    epochs: [2000, 2010, 2020]
+    raw_dir: mangroves_coral
+  allen_coral_atlas:
+    description: Allen Coral Atlas benthic/geomorphic maps (Mombasa)
+    epochs: static
+    raw_dir: mangroves_coral
+
+sea_level:
+  ipcc_ar6:
+    description: IPCC AR6 regional sea-level projections (NASA Sea Level Projection Tool)
+    url: https://sealevel.nasa.gov/ipcc-ar6-sea-level-projection-tool
+    scenarios: [ssp245, ssp585]
+    external_dir: ipcc_ar6_slr
+  gtsm:
+    description: GTSM extreme water levels / storm surge return periods (CDS)
+    external_dir: gtsm_surge
+  tide_gauges:
+    description: PSMSL / UHSLC tide gauge records for calibration
+    external_dir: tide_gauges

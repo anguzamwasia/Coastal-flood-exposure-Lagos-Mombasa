@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------------------
+# Global project configuration
+# Divergent Coastal Vulnerability Under Accelerating Sea-Level Rise:
+# Lagos (Nigeria) vs Mombasa (Kenya)
+# ---------------------------------------------------------------------------
+project:
+  name: coastal-flood-exposure-lagos-mombasa
+  authors: ["Mercy Akintola", "Cynthia Anguza"]
+  cities: [lagos, mombasa]
+
+paths:
+  aoi: data/aoi
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  external: data/external
+  models: models
+  outputs: outputs
+
+crs:
+  geographic: "EPSG:4326"     # storage / exchange
+  # Metric CRS per city is defined in config/cities/<city>.yaml
+
+resolution_m:
+  analysis: 30                # FABDEM / Landsat native
+  hydrodynamic: 30            # LISFLOOD-FP grid (can coarsen to 90 for 2100 runs)
+  population: 100             # WorldPop / GHSL
+
+# --- Historical baseline epochs -------------------------------------------
+# 2025 is the "current" baseline; set to 2026 once full-year 2026 composites exist.
+baseline:
+  epochs: [2000, 2010, 2020, 2025]
+  reference_epoch: 2025       # baseline against which projections are compared
+  composite_window_months: 12 # cloud-free annual composites centred on each epoch
+  # Sensor availability per epoch (Sentinel missions start 2014/2015)
+  sensors:
+    2000: [landsat5, landsat7]
+    2010: [landsat5, landsat7]
+    2020: [landsat8, sentinel2, sentinel1]
+    2025: [landsat8, landsat9, sentinel2, sentinel1]
+
+# --- Future scenarios & planning horizons ----------------------------------
+scenarios:
+  ssp: [ssp245, ssp585]
+  horizons: [2030, 2050, 2100]
+  horizon_rationale:
+    2030: immediate municipal response
+    2050: infrastructure design lifespan
+    2100: long-term climate benchmark
+  slr_quantiles: [0.17, 0.50, 0.83]   # IPCC AR6 likely range + median
+  return_periods_yr: [1, 10, 100]     # storm-surge / extreme water level events
+  include_subsidence: true            # add InSAR-derived vertical land motion
+
+# --- Hazard classification (flood depth, metres) ---------------------------
+hazard_tiers:
+  nuisance: [0.1, 0.5]
+  moderate: [0.5, 1.0]
+  severe: [1.0, .inf]
+
+# --- Exposure ------------------------------------------------------------
+exposure:
+  building_classes: [residential, commercial, industrial, civic]
+  critical_networks: [roads, rail, ports, airports, hospitals, schools, power]
+  aggregation_unit: ward

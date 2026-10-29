@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coastal-exposure"
+version = "0.1.0"
+description = "Comparative compound-flood and critical-infrastructure exposure framework for Lagos and Mombasa"
+authors = [{ name = "Mercy Akintola" }, { name = "Cynthia Anguza" }]
+requires-python = ">=3.10"
+dependencies = [
+  "numpy", "pandas", "scipy", "pyyaml", "requests", "matplotlib",
+  "geopandas>=0.14", "shapely>=2.0", "rasterio", "rasterstats",
+]
+
+[project.optional-dependencies]
+acquisition = ["earthengine-api", "geemap", "osmnx"]
+insar = ["mintpy"]
+dev = ["pytest", "jupyterlab", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100

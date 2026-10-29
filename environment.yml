@@ -1,0 +1,27 @@
+name: coastal-exposure
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy
+  - pyyaml
+  - requests
+  - matplotlib
+  - geopandas>=0.14
+  - shapely>=2.0
+  - rasterio
+  - rasterstats
+  - gdal
+  - osmnx
+  - earthengine-api
+  - geemap
+  - xarray
+  - rioxarray
+  - jupyterlab
+  - pytest
+  - ruff
+  - pip
+  - pip:
+      - -e .
