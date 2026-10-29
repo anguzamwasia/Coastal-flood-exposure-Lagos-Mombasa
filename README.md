@@ -2,7 +2,7 @@
 
 **Divergent Coastal Vulnerability Under Accelerating Sea-Level Rise: A Comparative Inundation and
 Critical Infrastructure Exposure Framework for Lagos and Mombasa**
-— Mercy Akintola, Cynthia Anguza
+- Mercy Akintola, Cynthia Anguza
 
 Comparative compound-flood and critical-infrastructure exposure framework for Lagos and Mombasa.
 Uses Sentinel-1 InSAR subsidence, IPCC AR6 SSP2-4.5/5-8.5 sea-level rise (2030/2050/2100), an
