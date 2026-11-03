@@ -3,13 +3,52 @@ country: Kenya
 iso3: KEN
 # AOI not yet delivered - drop the boundary at this path (KML, GeoJSON or GPKG)
 aoi: data/aoi/mombasa/mombasa_aoi.kml
-bbox: null                    # filled in once the AOI is added
+bbox: null                    # filled in once the AOI is added (lon_min, lat_min, lon_max, lat_max)
 crs_metric: "EPSG:32737"      # WGS 84 / UTM zone 37S
-tidal_regime: macro-tidal
+tidal_regime: meso-tidal      # spring range ~3-4 m (Kilindini); matches abstract wording
 geology: coralline limestone island / estuarine creeks
+
+# --- Study-area size (Mombasa County) -------------------------------------
+area_km2:
+  total: 287.9                # planning area incl. water
+  land: [212.5, 229.0]        # range across sources - confirm one value from AOI
+  water: null                 # compute from AOI once delivered (~59-75 km2)
+
+# --- Hydrography ----------------------------------------------------------
+creeks: [Tudor Creek, Port Reitz, Makupa Creek, Mtwapa Creek]
+waterway_osm_tags:
+  waterway: [river, stream, canal, drain, tidal_channel]
+  natural: [coastline]
+
+# --- Compound flood drivers (LISFLOOD-FP boundary forcing) ----------------
+compound_drivers:
+  - spring_tide               # HAT / MHWS from tide gauge
+  - storm_surge               # GTSM return levels (see project.yaml return_periods_yr)
+  - rainfall                  # secondary driver; CHIRPS / ERA5-Land extremes
+tide_gauge: Mombasa (UHSLC 151)
+tide_datum: null              # TODO: confirm chart datum -> MSL offset for Kilindini
+
+# --- Critical corridors ---------------------------------------------------
 critical_corridors:
   - name: Makupa Causeway
     osm_query: 'name~"Makupa"'
+  - name: Nyali Bridge
+    osm_query: 'bridge=yes and name~"Nyali"'
+  - name: Likoni Ferry approaches
+    osm_query: 'route=ferry and name~"Likoni"'
+  - name: Mombasa-Nairobi Highway (A109)
+    osm_query: 'highway~"trunk|primary" and ref~"A109|A8"'
+  - name: Dongo Kundu Bypass
+    osm_query: 'name~"Dongo Kundu"'
+critical_facilities: [Kilindini Port, Moi International Airport, SGR Mombasa Terminus]
+
+# --- Biophysical buffers --------------------------------------------------
 biophysical_buffers: [mangroves, coral_reefs]
-tide_gauge: Mombasa (UHSLC 151)
+buffer_sources:
+  mangroves: global_mangrove_watch   # see data_sources.yaml
+  coral_reefs: allen_coral_atlas
+engineered_defences: [seawalls, revetments]   # Old Town / Fort Jesus frontage, port
+
+# --- Exposure aggregation -------------------------------------------------
 admin_unit_source: Kenya IEBC ward boundaries
+subcounties: [Mvita, Nyali, Kisauni, Likoni, Changamwe, Jomvu]
