@@ -1,16 +1,17 @@
 city: mombasa
 country: Kenya
 iso3: KEN
-# AOI not yet delivered - drop the boundary at this path (KML, GeoJSON or GPKG)
-aoi: data/aoi/mombasa/mombasa_aoi.kml
-bbox: null                    # filled in once the AOI is added (lon_min, lat_min, lon_max, lat_max)
+# AOI: Mombasa County admin boundary from OpenStreetMap (Nominatim, ODbL), incl. creek/harbour water
+aoi: data/aoi/mombasa/mombasa_aoi.geojson
+# Bounding box of the AOI (lon_min, lat_min, lon_max, lat_max), derived from mombasa_aoi.geojson
+bbox: [39.5631, -4.1548, 39.7643, -3.9227]
 crs_metric: "EPSG:32737"      # WGS 84 / UTM zone 37S
 tidal_regime: meso-tidal      # spring range ~3-4 m (Kilindini); matches abstract wording
 geology: coralline limestone island / estuarine creeks
 
 # --- Study-area size (Mombasa County) -------------------------------------
 area_km2:
-  total: 287.9                # planning area incl. water
+  total: 287.9                # planning area incl. water (OSM AOI polygon measures ~289 km2)
   land: [212.5, 229.0]        # range across sources - confirm one value from AOI
   water: null                 # compute from AOI once delivered (~59-75 km2)
 
